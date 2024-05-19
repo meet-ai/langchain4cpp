@@ -1,4 +1,4 @@
-script_folder="/Users/a0000/xmake-cpp/build/.conan/poco/1.13.3"
+script_folder="/Users/meetai/langchain4cpp/build/.conan/poco/1.13.3"
 echo "echo Restoring environment" > "$script_folder/deactivate_conanbuildenv-release-armv8.sh"
 for v in 
 do

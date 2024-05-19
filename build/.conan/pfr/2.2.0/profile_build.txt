@@ -5,4 +5,4 @@ os=Macos
 compiler=clang
 compiler.cppstd=gnu17
 compiler.libcxx=libc++
-compiler.version=18
+compiler.version=17

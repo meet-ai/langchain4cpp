@@ -1,8 +1,8 @@
 {
   Macos_armv8_Release = 
   {
-    includedirs    = {"/Users/a0000/.conan2/p/b/pcre2039afcf93b69a/p/include"},
-    linkdirs       = {"/Users/a0000/.conan2/p/b/pcre2039afcf93b69a/p/lib"},
+    includedirs    = {"/Users/meetai/.conan2/p/b/pcre2636bd3eb76a88/p/include"},
+    linkdirs       = {"/Users/meetai/.conan2/p/b/pcre2636bd3eb76a88/p/lib"},
     links          = {"pcre2-32", "pcre2-16", "pcre2-posix", "pcre2-8"},
     frameworkdirs  = {},
     frameworks     = {},
@@ -12,7 +12,7 @@
     cflags         = {},
     shflags        = {},
     ldflags        = {},
-    __bindirs      = {"/Users/a0000/.conan2/p/b/pcre2039afcf93b69a/p/bin"},
+    __bindirs      = {"/Users/meetai/.conan2/p/b/pcre2636bd3eb76a88/p/bin"},
     __resdirs      = {},
     __srcdirs      = {}
   }

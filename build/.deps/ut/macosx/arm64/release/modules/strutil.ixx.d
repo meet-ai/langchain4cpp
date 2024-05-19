@@ -1,7 +1,4 @@
 {
-    files = {
-        "modules/strutil.ixx"
-    },
     moduleinfo = "{\
   \"revision\": 0,\
   \"rules\": [\
@@ -18,5 +15,8 @@
   ],\
   \"version\": 1\
 }\
-"
+",
+    files = {
+        "modules/strutil.ixx"
+    }
 }

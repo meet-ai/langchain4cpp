@@ -1,8 +1,8 @@
 {
   Macos_armv8_Release = 
   {
-    includedirs    = {"/Users/a0000/.conan2/p/b/expat5dd9d85511ad4/p/include"},
-    linkdirs       = {"/Users/a0000/.conan2/p/b/expat5dd9d85511ad4/p/lib"},
+    includedirs    = {"/Users/meetai/.conan2/p/b/expatfe0587454985f/p/include"},
+    linkdirs       = {"/Users/meetai/.conan2/p/b/expatfe0587454985f/p/lib"},
     links          = {"expat"},
     frameworkdirs  = {},
     frameworks     = {},
@@ -12,7 +12,7 @@
     cflags         = {},
     shflags        = {},
     ldflags        = {},
-    __bindirs      = {"/Users/a0000/.conan2/p/b/expat5dd9d85511ad4/p/bin"},
+    __bindirs      = {"/Users/meetai/.conan2/p/b/expatfe0587454985f/p/bin"},
     __resdirs      = {},
     __srcdirs      = {}
   }

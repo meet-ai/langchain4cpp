@@ -4,18 +4,18 @@
         {
             "-isysroot",
             "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
-            "-L/Users/a0000/.conan2/p/b/pocoe746e5be0b02d/p/lib",
-            "-L/Users/a0000/.conan2/p/b/pcre2039afcf93b69a/p/lib",
-            "-L/Users/a0000/.conan2/p/b/bzip2fb630d4425f6a/p/lib",
-            "-L/Users/a0000/.conan2/p/b/expat5dd9d85511ad4/p/lib",
-            "-L/Users/a0000/.conan2/p/b/sqlit4d6b2532c67d0/p/lib",
-            "-L/Users/a0000/.conan2/p/b/libpqb5397a98aa93d/p/lib",
-            "-L/Users/a0000/.conan2/p/b/libmyedb9413166fdd/p/lib",
-            "-L/Users/a0000/.conan2/p/b/openscabdba6da91dd/p/lib",
-            "-L/Users/a0000/.conan2/p/b/zlibae907975d636e/p/lib",
-            "-L/Users/a0000/.conan2/p/b/zstdf87558e46820a/p/lib",
-            "-L/Users/a0000/.conan2/p/b/lz440bdfe7bf074f/p/lib",
-            "-L/Users/a0000/.xmake/packages/r/reflect-cpp/@default/4dbd676f60274c039cd8bc439ce0e961/lib",
+            "-L/Users/meetai/.conan2/p/b/poco744d1943c5754/p/lib",
+            "-L/Users/meetai/.conan2/p/b/pcre2636bd3eb76a88/p/lib",
+            "-L/Users/meetai/.conan2/p/b/bzip2b6bf407195be9/p/lib",
+            "-L/Users/meetai/.conan2/p/b/expatfe0587454985f/p/lib",
+            "-L/Users/meetai/.conan2/p/b/sqlita112ff224b68b/p/lib",
+            "-L/Users/meetai/.conan2/p/b/libpq27cb0af70a7f5/p/lib",
+            "-L/Users/meetai/.conan2/p/b/libmy619e1a3483e83/p/lib",
+            "-L/Users/meetai/.conan2/p/b/opens4f133d87dbaa8/p/lib",
+            "-L/Users/meetai/.conan2/p/b/zlib884cf424d1015/p/lib",
+            "-L/Users/meetai/.conan2/p/b/zstdbc9074843771b/p/lib",
+            "-L/Users/meetai/.conan2/p/b/lz44cdfffebf3614/p/lib",
+            "-L/Users/meetai/.xmake/packages/r/reflect-cpp/@default/4dbd676f60274c039cd8bc439ce0e961/lib",
             "-Wl,-x",
             "-Wl,-dead_strip",
             "-lPocoNetSSL",
@@ -59,8 +59,6 @@
     },
     files = {
         "build/.objs/ut/macosx/arm64/release/src/cmd/ut.cpp.o",
-        "build/.objs/ut/macosx/arm64/release/modules/llm/anthropic/anthropic-api.cpp.o",
-        "build/.objs/ut/macosx/arm64/release/opt/homebrew/opt/llvm/bin/__/lib/c++/__/__/share/libc++/v1/std.cppm.o",
-        "build/.objs/ut/macosx/arm64/release/opt/homebrew/opt/llvm/bin/__/lib/c++/__/__/share/libc++/v1/std.compat.cppm.o"
+        "build/.objs/ut/macosx/arm64/release/modules/llm/anthropic/anthropic-api.cpp.o"
     }
 }

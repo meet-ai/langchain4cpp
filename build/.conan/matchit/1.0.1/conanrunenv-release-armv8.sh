@@ -1,4 +1,4 @@
-script_folder="/Users/a0000/xmake-cpp/build/.conan/matchit/1.0.1"
+script_folder="/Users/meetai/langchain4cpp/build/.conan/matchit/1.0.1"
 echo "echo Restoring environment" > "$script_folder/deactivate_conanrunenv-release-armv8.sh"
 for v in 
 do

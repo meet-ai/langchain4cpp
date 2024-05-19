@@ -1,8 +1,8 @@
 {
   Macos_armv8_Release = 
   {
-    includedirs    = {"/Users/a0000/.conan2/p/b/pocoe746e5be0b02d/p/include"},
-    linkdirs       = {"/Users/a0000/.conan2/p/b/pocoe746e5be0b02d/p/lib"},
+    includedirs    = {"/Users/meetai/.conan2/p/b/poco744d1943c5754/p/include"},
+    linkdirs       = {"/Users/meetai/.conan2/p/b/poco744d1943c5754/p/lib"},
     links          = {"PocoNetSSL", "PocoActiveRecord", "PocoZip", "PocoUtil", "PocoMongoDB", "PocoJWT", "PocoEncodings", "PocoDataSQLite", "PocoDataPostgreSQL", "PocoDataMySQL", "PocoData", "PocoCrypto", "PocoXML", "PocoRedis", "PocoNet", "PocoJSON", "PocoFoundation"},
     frameworkdirs  = {},
     frameworks     = {},
@@ -12,7 +12,7 @@
     cflags         = {},
     shflags        = {},
     ldflags        = {},
-    __bindirs      = {"/Users/a0000/.conan2/p/b/pocoe746e5be0b02d/p/bin"},
+    __bindirs      = {"/Users/meetai/.conan2/p/b/poco744d1943c5754/p/bin"},
     __resdirs      = {},
     __srcdirs      = {}
   }

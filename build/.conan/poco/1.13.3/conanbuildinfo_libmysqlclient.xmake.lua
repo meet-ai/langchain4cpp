@@ -1,9 +1,9 @@
 {
   Macos_armv8_Release = 
   {
-    includedirs    = {"/Users/a0000/.conan2/p/b/libmyedb9413166fdd/p/include",
-"/Users/a0000/.conan2/p/b/libmyedb9413166fdd/p/include/mysql"},
-    linkdirs       = {"/Users/a0000/.conan2/p/b/libmyedb9413166fdd/p/lib"},
+    includedirs    = {"/Users/meetai/.conan2/p/b/libmy619e1a3483e83/p/include",
+"/Users/meetai/.conan2/p/b/libmy619e1a3483e83/p/include/mysql"},
+    linkdirs       = {"/Users/meetai/.conan2/p/b/libmy619e1a3483e83/p/lib"},
     links          = {"mysqlclient"},
     frameworkdirs  = {},
     frameworks     = {},
@@ -13,7 +13,7 @@
     cflags         = {},
     shflags        = {},
     ldflags        = {},
-    __bindirs      = {"/Users/a0000/.conan2/p/b/libmyedb9413166fdd/p/bin"},
+    __bindirs      = {"/Users/meetai/.conan2/p/b/libmy619e1a3483e83/p/bin"},
     __resdirs      = {},
     __srcdirs      = {}
   }

@@ -1,8 +1,8 @@
 {
   Macos_armv8_Release = 
   {
-    includedirs    = {"/Users/a0000/.conan2/p/b/sqlit4d6b2532c67d0/p/include"},
-    linkdirs       = {"/Users/a0000/.conan2/p/b/sqlit4d6b2532c67d0/p/lib"},
+    includedirs    = {"/Users/meetai/.conan2/p/b/sqlita112ff224b68b/p/include"},
+    linkdirs       = {"/Users/meetai/.conan2/p/b/sqlita112ff224b68b/p/lib"},
     links          = {"sqlite3"},
     frameworkdirs  = {},
     frameworks     = {},
@@ -12,7 +12,7 @@
     cflags         = {},
     shflags        = {},
     ldflags        = {},
-    __bindirs      = {"/Users/a0000/.conan2/p/b/sqlit4d6b2532c67d0/p/bin"},
+    __bindirs      = {"/Users/meetai/.conan2/p/b/sqlita112ff224b68b/p/bin"},
     __resdirs      = {},
     __srcdirs      = {}
   }
