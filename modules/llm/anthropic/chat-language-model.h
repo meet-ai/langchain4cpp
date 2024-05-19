@@ -1,49 +1,55 @@
-#pragma once
+#ifndef LANGCHAIN4CPP_MODULES_LLM_ANTHROPIC_CHAT_LANGUAGE_MODEL_H_
+#define LANGCHAIN4CPP_MODULES_LLM_ANTHROPIC_CHAT_LANGUAGE_MODEL_H_
+// Copyright[2024] meetai.co@gmail.com
+
 #include <memory>
 #include <string>
+#include <utility>
+#include <vector>
+
+#include "llm/anthropic/anthropic-client.h"
+#include "llm/anthropic/llm-message.h"
+#include "llm/anthropic/user-message.h"
 #include "utils/meta.h"
 
-using namespace std;
+using std::string;
+using std::vector;
 
-
-
+// Model -> Client -> Req/Resp
 class ChatLanguageModel {
-public:
-    ChatLanguageModel() = default;            // 显式请求默认构造函数
-    ChatLanguageModel(const ChatLanguageModel&) = default; // 显式请求拷贝构造函数
-    ChatLanguageModel(ChatLanguageModel&&) = default;   // 显式请求移动构造函数
-    ChatLanguageModel& operator=(const ChatLanguageModel&) = default; // 显式请求拷贝赋值运算符
-    ChatLanguageModel& operator=(ChatLanguageModel&&) = default; // 显式请求移动赋值运算符
-    ~ChatLanguageModel() = default;           // 显式请求析构函数
-    ChatLanguageModel(int value) : value_(value) {} // 用户定义的构造函数
+ public:
+    ChatLanguageModel() = default;                                      // 显式请求默认构造函数
+    ChatLanguageModel(const ChatLanguageModel &) = default;             // 显式请求拷贝构造函数
+    ChatLanguageModel(ChatLanguageModel &&) = default;                  // 显式请求移动构造函数
+    ChatLanguageModel &operator=(const ChatLanguageModel &) = default;  // 显式请求拷贝赋值运算符
+    ChatLanguageModel &operator=(ChatLanguageModel &&) = default;       // 显式请求移动赋值运算符
+    ~ChatLanguageModel() = default;                                     // 显式请求析构函数
 
+    LlmMessage generate(const string &messages) { return std::move(LlmMessage{}); }
+    LlmMessage generate(const UserMessage &message) { return std::move(LlmMessage{}); }
+    // LlmMessage generate(const vector<UserMessage> &messages) { return std::move(LlmMessage{}); }
 
-    vector<string> generate(vector<string> messages) {
-        return vector<string>();
-    }
-
-
-private:
-   PROPERTY(int,value_,0)
-   PROPERTY(string, api_key_,"")
-   PROPERTY(string, model_name_,"")
-   PROPERTY(float,temperature,0.9)
-   PROPERTY(int,top_p,10)
-   PROPERTY(int,topk,3)
-   PROPERTY(int, max_tokens,1024)
-   PROPERTY(bool, stop_seq_,false)
-   PROPERTY(bool, max_retries,3)
+ private:
+    PROPERTY(string, api_key_, "")
+    PROPERTY(string, model_name_, "")
+    PROPERTY(float, temperature, 0.9)
+    PROPERTY(int, top_p, 10)
+    PROPERTY(int, topk, 3)
+    PROPERTY(int, max_tokens, 1024)
+    PROPERTY(bool, stop_seq_, false)
+    PROPERTY(bool, max_retries, 3)
+    PROPERTY(std::shared_ptr<AnthropicClient>, anthropic_client, nullptr)
 };
 class ChatLanguageModelBuilder {
-public:
-    ChatLanguageModelBuilder() = default;            // 显式请求默认构造函数
-    ChatLanguageModelBuilder(const ChatLanguageModelBuilder&) = default; // 显式请求拷贝构造函数
-    ChatLanguageModelBuilder(ChatLanguageModelBuilder&&) = default;   // 显式请求移动构造函数
-    ChatLanguageModelBuilder& operator=(const ChatLanguageModelBuilder&) = default; // 显式请求拷贝赋值运算符
-    ChatLanguageModelBuilder& operator=(ChatLanguageModelBuilder&&) = default; // 显式请求移动赋值运算符
-    ~ChatLanguageModelBuilder() = default;           // 显式请求析构函数
+ public:
+    ChatLanguageModelBuilder() = default;                                             // 显式请求默认构造函数
+    ChatLanguageModelBuilder(const ChatLanguageModelBuilder &) = default;             // 显式请求拷贝构造函数
+    ChatLanguageModelBuilder(ChatLanguageModelBuilder &&) = default;                  // 显式请求移动构造函数
+    ChatLanguageModelBuilder &operator=(const ChatLanguageModelBuilder &) = default;  // 显式请求拷贝赋值运算符
+    ChatLanguageModelBuilder &operator=(ChatLanguageModelBuilder &&) = default;  // 显式请求移动赋值运算符
+    ~ChatLanguageModelBuilder() = default;                                       // 显式请求析构函数
 
-  public:
+ public:
     ChatLanguageModelBuilder &withApiKey(const string &apiKey) {
         sp_chat_language_model->set_api_key_(apiKey);
         return (*this);
@@ -56,7 +62,7 @@ public:
         sp_chat_language_model->set_temperature(temperature);
         return (*this);
     }
-    ChatLanguageModelBuilder &withTopP(int topP) { 
+    ChatLanguageModelBuilder &withTopP(int topP) {
         sp_chat_language_model->set_top_p(topP);
         return (*this);
     }
@@ -68,18 +74,20 @@ public:
     ChatLanguageModelBuilder &withMaxRetries(int retry) {
         sp_chat_language_model->set_max_retries(retry);
         return (*this);
-
     }
     ChatLanguageModelBuilder &withStopSeq(bool stop) {
         sp_chat_language_model->set_stop_seq_(stop);
         return (*this);
     }
-
-    shared_ptr<ChatLanguageModel> build() {
-        return sp_chat_language_model;
+    ChatLanguageModelBuilder &withAnthropicClient(std::shared_ptr<AnthropicClient> client_) {
+        sp_chat_language_model->set_anthropic_client(client_);
+        return (*this);
     }
 
-  private:
-    shared_ptr<ChatLanguageModel> sp_chat_language_model=make_shared<ChatLanguageModel>();
+    std ::shared_ptr<ChatLanguageModel> build() { return sp_chat_language_model; }
 
+ private:
+    std::shared_ptr<ChatLanguageModel> sp_chat_language_model = std::make_shared<ChatLanguageModel>();
 };
+
+#endif  // LANGCHAIN4CPP_MODULES_LLM_ANTHROPIC_CHAT_LANGUAGE_MODEL_H_
