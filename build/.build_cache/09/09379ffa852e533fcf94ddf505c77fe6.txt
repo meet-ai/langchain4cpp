@@ -1,0 +1,9 @@
+{
+    errdata = "In file included from modules/llm/anthropic/anthropic-api.cpp:1:\
+\27[1mmodules/llm/anthropic/anthropic-api.h:1:19: \27[0m\27[0;1;35mwarning: \27[0m\27[1mextra tokens at end of #ifndef directive [-Wextra-tokens]\27[0m\
+    1 | #ifndef ANTHROPIC - API_H_\27[0m\
+      | \27[0;1;32m                  ^\
+\27[0m      | \27[0;32m                  //\
+\27[0m1 warning generated.\
+"
+}
