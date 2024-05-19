@@ -1,8 +1,0 @@
-[settings]
-arch=armv8
-build_type=Release
-os=Macos
-compiler=clang
-compiler.cppstd=gnu17
-compiler.libcxx=libc++
-compiler.version=17
