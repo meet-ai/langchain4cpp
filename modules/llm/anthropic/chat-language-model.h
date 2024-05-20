@@ -16,18 +16,14 @@ using std::string;
 using std::vector;
 
 // Model -> Client -> Req/Resp
+class ChatLanguageModelBuilder;
 class ChatLanguageModel {
  public:
-    ChatLanguageModel() = default;                                      // 显式请求默认构造函数
-    ChatLanguageModel(const ChatLanguageModel &) = default;             // 显式请求拷贝构造函数
-    ChatLanguageModel(ChatLanguageModel &&) = default;                  // 显式请求移动构造函数
-    ChatLanguageModel &operator=(const ChatLanguageModel &) = default;  // 显式请求拷贝赋值运算符
-    ChatLanguageModel &operator=(ChatLanguageModel &&) = default;       // 显式请求移动赋值运算符
-    ~ChatLanguageModel() = default;                                     // 显式请求析构函数
-
     LlmMessage generate(const string &messages) { return std::move(LlmMessage{}); }
     LlmMessage generate(const UserMessage &message) { return std::move(LlmMessage{}); }
     // LlmMessage generate(const vector<UserMessage> &messages) { return std::move(LlmMessage{}); }
+
+    friend class ChatLanguageModelBuilder;
 
  private:
     PROPERTY(string, api_key_, "")
@@ -42,48 +38,14 @@ class ChatLanguageModel {
 };
 class ChatLanguageModelBuilder {
  public:
-    ChatLanguageModelBuilder() = default;                                             // 显式请求默认构造函数
-    ChatLanguageModelBuilder(const ChatLanguageModelBuilder &) = default;             // 显式请求拷贝构造函数
-    ChatLanguageModelBuilder(ChatLanguageModelBuilder &&) = default;                  // 显式请求移动构造函数
-    ChatLanguageModelBuilder &operator=(const ChatLanguageModelBuilder &) = default;  // 显式请求拷贝赋值运算符
-    ChatLanguageModelBuilder &operator=(ChatLanguageModelBuilder &&) = default;  // 显式请求移动赋值运算符
-    ~ChatLanguageModelBuilder() = default;                                       // 显式请求析构函数
-
- public:
-    ChatLanguageModelBuilder &withApiKey(const string &apiKey) {
-        sp_chat_language_model->set_api_key_(apiKey);
-        return (*this);
-    }
-    ChatLanguageModelBuilder &withModelName(const string &modelName) {
-        sp_chat_language_model->set_model_name_(modelName);
-        return (*this);
-    }
-    ChatLanguageModelBuilder &withTemperature(int temperature) {
-        sp_chat_language_model->set_temperature(temperature);
-        return (*this);
-    }
-    ChatLanguageModelBuilder &withTopP(int topP) {
-        sp_chat_language_model->set_top_p(topP);
-        return (*this);
-    }
-
-    ChatLanguageModelBuilder &withTopK(int topK) {
-        sp_chat_language_model->set_topk(topK);
-        return (*this);
-    }
-    ChatLanguageModelBuilder &withMaxRetries(int retry) {
-        sp_chat_language_model->set_max_retries(retry);
-        return (*this);
-    }
-    ChatLanguageModelBuilder &withStopSeq(bool stop) {
-        sp_chat_language_model->set_stop_seq_(stop);
-        return (*this);
-    }
-    ChatLanguageModelBuilder &withAnthropicClient(std::shared_ptr<AnthropicClient> client_) {
-        sp_chat_language_model->set_anthropic_client(client_);
-        return (*this);
-    }
-
+    BUILDER_WITH(ChatLanguageModelBuilder, string, sp_chat_language_model, api_key_)
+    BUILDER_WITH(ChatLanguageModelBuilder, string, sp_chat_language_model, model_name_)
+    BUILDER_WITH(ChatLanguageModelBuilder, int, sp_chat_language_model, temperature)
+    BUILDER_WITH(ChatLanguageModelBuilder, int, sp_chat_language_model, top_p)
+    BUILDER_WITH(ChatLanguageModelBuilder, int, sp_chat_language_model, topk)
+    BUILDER_WITH(ChatLanguageModelBuilder, int, sp_chat_language_model, max_tokens)
+    BUILDER_WITH(ChatLanguageModelBuilder, bool, sp_chat_language_model, stop_seq_)
+    BUILDER_WITH(ChatLanguageModelBuilder, int, sp_chat_language_model, max_retries)
     std ::shared_ptr<ChatLanguageModel> build() { return sp_chat_language_model; }
 
  private:

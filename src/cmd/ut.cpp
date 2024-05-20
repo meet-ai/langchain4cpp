@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     ChatLanguageModel clm;
     using namespace boost::ut;
     "sum"_test = [clm] {
-        auto sp_chat_language_model = ChatLanguageModelBuilder().withApiKey("hello").build();
+        auto sp_chat_language_model = ChatLanguageModelBuilder().with_api_key_("hello").build();
         sp_chat_language_model->get_max_tokens();
     };
 
@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
 
     "anth_client"_test = [] {
         AnthropicClientBuilder builder;
-        auto sp_anthropic_client = builder.baseUrl("http://www.baidu.com").apiKey("1234567").version("123456").build();
+        auto sp_anthropic_client =
+            builder.with_base_url("http://www.baidu.com").with_api_key("1234567").with_version("123456").build();
     };
 }

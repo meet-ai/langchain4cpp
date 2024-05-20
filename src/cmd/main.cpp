@@ -37,30 +37,4 @@ int main(int argc, char** argv) {
     Poco::AutoPtr<Poco::Util::IniFileConfiguration> pConfig(new Poco::Util::IniFileConfiguration(filename));
     spdlog::info("config:{}", pConfig->getString("log.log_level"));
     InitLog(pConfig->getString("log.log_level"));
-    "sum"_test = [] {
-        auto sp_chat_language_model = ChatLanguageModelBuilder().withApiKey("hello").build();
-        sp_chat_language_model->get_max_tokens();
-    };
-
-    "reflect"_test = [] {
-        std::string x = R"({"role": "user", "content": [
-  {
-    "type": "image",
-    "source": {
-      "type": "base64",
-      "media_type": "image/jpeg",
-      "data": "/9j/4AAQSkZJRg..."
-    }
-  },
-  {"type": "text", "text": "What is in this image?"}
-]})";
-        std::string y = R"({"role": "user", "content": "hello claude3"})";
-        auto um = rfl::json::read<UserMessage>(x).value();
-        boost::ut::expect(um.role == "user");
-    };
-
-    "anth_client"_test = [] {
-        AnthropicClientBuilder builder;
-        auto sp_anthropic_client = builder.baseUrl("http://www.baidu.com").apiKey("1234567").version("123456").build();
-    };
 }
