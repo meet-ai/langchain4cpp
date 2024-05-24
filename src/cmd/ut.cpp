@@ -8,8 +8,8 @@
 #include <rfl.hpp>
 #include <rfl/toml.hpp>
 
-#include "llm/anthropic/anthropic-api.h"
-#include "llm/anthropic/chat-language-model.h"
+#include "modules/llm/anthropic/anthropic-api.h"
+#include "modules/llm/anthropic/anthropic-model.h"
 
 // using namespace std;
 // using namespace matchit;
@@ -17,7 +17,7 @@
 // using namespace anthropic_api;
 
 int main(int argc, char **argv) {
-    ChatLanguageModel clm;
+    Claude3Model model;
     using namespace boost::ut;
     "sum"_test = [clm] {
         auto sp_chat_language_model = ChatLanguageModelBuilder().with_api_key_("hello").build();

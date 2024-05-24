@@ -21,7 +21,9 @@
 #include <rfl/json.hpp>
 
 #include "llm/anthropic/chat-request.h"
+#include "llm/anthropic/chat-request.h"
 #include "llm/anthropic/chat-response.h"
+#include "llm/anthropic/chat-model.h"
 
 namespace anthropic_api {}  // namespace anthropic_api
 

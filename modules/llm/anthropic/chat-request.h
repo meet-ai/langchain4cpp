@@ -17,7 +17,7 @@ class ChatMessageRequest {
 class ChatMessageRequestBuilder {
  public:
  private:
-    std::shared_ptr<ChatMessageRequest> sp_chat_message_req = std::make_shared<ChatMessageRequest>();
+    std::shared_ptr<ChatMessageRequest> chat_message_req_ptr = std::make_shared<ChatMessageRequest>();
 };
 
 }  // namespace anthropic_api

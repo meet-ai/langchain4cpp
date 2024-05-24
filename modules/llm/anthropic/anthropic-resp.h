@@ -1,14 +1,11 @@
-// Copyright[2024] meetai.co @gmail.com
-#ifndef LANGCHAIN4CPP_MODULES_LLM_ANTHROPIC_USER_MESSAGE_H_
-#define LANGCHAIN4CPP_MODULES_LLM_ANTHROPIC_USER_MESSAGE_H_
-
+#ifndef ANTHROPIC-RESP_H_
+#define ANTHROPIC-RESP_H_
+#include <map>
 #include <string>
-#include <variant>
-#include <vector>
 
-#include "llm/anthropic/message-content.h"
 #include "utils/meta.h"
 
+using namespace std;
 
 //with text message
 //curl https://api.anthropic.com/v1/messages \
@@ -37,10 +34,25 @@
 //  {"type": "text", "text": "What is in this image?"}
 //]}
 //
-using string = std::string;
-struct UserMessage {
-    string role;
-    std::variant<string, std::vector<MessageContent>> content;
+class AnthropicRespBuilder;
+class AnthropicResp {
+ public:
+    friend class AnthropicRespBuilder;
+
+ private:
+    string url_ = "";
+    string method_ = "post";
+    string body_ = "";
+    map<string, string> headers_ = {};
 };
 
-#endif  // LANGCHAIN4CPP_MODULES_LLM_ANTHROPIC_USER_MESSAGE_H_
+class AnthropicRespBuilder {
+ public:
+    std::shared_ptr<AnthropicResp> build() { return req_ptr; }
+
+ private:
+    std::shared_ptr<AnthropicResp> req_ptr = std::make_shared<AnthropicResp>();
+};
+
+
+#endif // ANTHROPIC-RESP_H_
