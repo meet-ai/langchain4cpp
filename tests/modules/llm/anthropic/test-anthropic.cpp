@@ -42,6 +42,7 @@ TEST(Cpr, Post) {
     spdlog::info("api-key:{}", api_key);
     spdlog::info("r.text:{}", r.text);
 }
+
 TEST(AnthropicClient, Create) {
     AnthropicClientBuilder builder;
     auto api_key = std::getenv("ANTHROPIC_API_KEY") ? std::getenv("ANTHROPIC_API_KEY") : "";

@@ -26,8 +26,12 @@ class AnthropicModel {
         auto respMessages = anthropic_client->Create(ums);
         return respMessages.size() > 0 ? respMessages[0].text : "";
     }
-    AnthropicResp generate(const UserMessage &message) { return std::move(AnthropicResp{}); }
-    vector<string> ListModels() { return vector<string>(); };
+    TextContent generate(const UserMessage &message) {
+        auto ums = vector<UserMessage>{message};
+        auto textContents = anthropic_client->Create(ums);
+        return textContents.size() > 0 ? std::move(textContents[0]) : TextContent{};
+    }
+    // vector<string> ListModels() { return vector<string>(); };
 
     // LlmMessage generate(const vector<UserMessage> &messages) { return std::move(LlmMessage{}); }
 
