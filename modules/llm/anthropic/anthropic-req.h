@@ -38,7 +38,7 @@ using namespace std;
 //
 struct AnthropicReq {
     string model;
-    int max_tokens;
+    int max_tokens=1024;
     vector <UserMessage> messages;
 };
 

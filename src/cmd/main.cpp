@@ -1,13 +1,10 @@
 // Copyright[2024] meetai.co@gmail.com
 
-#include <Poco/AutoPtr.h>
-#include <Poco/Util/IniFileConfiguration.h>
 #include <matchit.h>
 #include <spdlog/sinks/stdout_color_sinks.h>  // 确保包含这
 #include <spdlog/spdlog.h>
 
 #include <CLI/CLI.hpp>
-#include <boost/ut.hpp>  // import boost.ut;
 #include <memory>
 #include <string>
 using namespace std;
@@ -36,7 +33,7 @@ int main(int argc, char** argv) {
     app.add_option("-c,--conf", filename, "A help string");
     CLI11_PARSE(app, argc, argv);
 
-    Poco::AutoPtr<Poco::Util::IniFileConfiguration> pConfig(new Poco::Util::IniFileConfiguration(filename));
-    spdlog::info("config:{}", pConfig->getString("log.log_level"));
-    InitLog(pConfig->getString("log.log_level"));
+//    Poco::AutoPtr<Poco::Util::IniFileConfiguration> pConfig(new Poco::Util::IniFileConfiguration(filename));
+//    spdlog::info("config:{}", pConfig->getString("log.log_level"));
+//    InitLog(pConfig->getString("log.log_level"));
 }

@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 #include "llm/anthropic/anthropic-client.h"
-#include "llm/anthropic/llm-message.h"
+#include "llm/anthropic/anthropic-resp.h"
 #include "llm/anthropic/user-message.h"
 #include "utils/meta.h"
 
@@ -20,8 +20,8 @@ using std::vector;
 class AnthropicModelBuilder;
 class AnthropicModel {
  public:
-    LlmMessage generate(const string &messages) { return std::move(LlmMessage{}); }
-    LlmMessage generate(const UserMessage &message) { return std::move(LlmMessage{}); }
+    AnthropicResp generate(const string &messages) { return std::move(AnthropicResp{}); }
+    AnthropicResp generate(const UserMessage &message) { return std::move(AnthropicResp{}); }
     vector<string> ListModels() { return vector<string>();};
 
     // LlmMessage generate(const vector<UserMessage> &messages) { return std::move(LlmMessage{}); }
