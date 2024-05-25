@@ -11,6 +11,7 @@
 #include <rfl/json.hpp>
 #include <sstream>
 #include <string>
+#include <variant>
 #include <vector>
 
 #include "llm/anthropic/anthropic-req.h"
@@ -28,7 +29,7 @@ class AnthropicClient {
     friend class AnthropicClientBuilder;
 
  public:
-    vector<MessageContent> Create(const std::vector<UserMessage>& user_messages) {
+    vector<TextContent> Create(const std::vector<UserMessage>& user_messages) {
         AnthropicReq req{.model = model, .max_tokens = 1024, .messages = std::move(user_messages)};
 
         auto body = rfl::json::write(req);
@@ -43,17 +44,24 @@ class AnthropicClient {
             } else {
                 spdlog::error("request failed with error:{}", r.error.message);
             }
+            return vector<TextContent>();
         }
         if (r.status_code != 200) {
             spdlog::error("request failed with status code:{}", r.status_code);
+            return vector<TextContent>();
         }
         spdlog::info("messages response:{}", r.text);
         auto resp = rfl::json::read<AnthropicResp>(r.text).value();
-        return resp.content;
+        // std::get_if<std::vector<TextContent>>(&resp.content)
+        std::vector<TextContent> result(resp.content.size());
+        std::transform(resp.content.begin(), resp.content.end(), result.begin(), [](MessageContent mc) {
+            return *std::get_if<TextContent>(&mc);
+        });
+        return result;
     }
 
-    //UserMessage Create(const std::vector<UserMessage>& user_message, int max_tokens, const string& model_name) {}
-    // UserMessage Create(const string& user_message) {}
+    // UserMessage Create(const std::vector<UserMessage>& user_message, int max_tokens, const string& model_name) {}
+    //  UserMessage Create(const string& user_message) {}
 
  private:
     string base_url = "https://api.anthropic.com/v1";

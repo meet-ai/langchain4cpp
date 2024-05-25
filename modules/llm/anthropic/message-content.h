@@ -13,7 +13,7 @@ struct ImageContent {
     MessageSource source = {};
 };
 struct TextContent {
-    string type = "image";
+    string type = "text";
     string text = "";
 };
 using MessageContent = std::variant<ImageContent, TextContent>;
