@@ -71,11 +71,6 @@ TEST(AnthropicChatModel, generate) {
     auto result = model->generate("hello-world");
     spdlog::info("anthropic model response:{}", result);
 }
-TEST(Anthropic, ListModels) {
-    AnthropicModelBuilder builder;
-    auto anthropic_model_ptr = builder.build();
-    anthropic_model_ptr->ListModels();
-}
 
 TEST(Anthropic, Pipeline) {
     AnthropicModelBuilder builder;

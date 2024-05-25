@@ -1,10 +1,11 @@
 #ifndef ANTHROPIC_RESP_H_
 #define ANTHROPIC_RESP_H_
 #include <map>
-#include <string>
 #include <optional>
+#include <string>
 
 #include "llm/anthropic/message-content.h"
+#include "llm/common.h"
 #include "utils/meta.h"
 
 using namespace std;
@@ -54,11 +55,6 @@ using namespace std;
 //  }
 //}
 //
-
-struct Usage {
-    int input_tokens;
-    int output_tokens;
-};
 
 struct AnthropicResp {
     string id;
