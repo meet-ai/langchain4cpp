@@ -13,7 +13,6 @@ using namespace std;
 // #include "llm/anthropic/anthropic-model.h"
 
 // import strutil;
-using namespace boost::ut;
 
 std::unique_ptr<spdlog::logger> InitLog(const string& level) {
     using namespace matchit;

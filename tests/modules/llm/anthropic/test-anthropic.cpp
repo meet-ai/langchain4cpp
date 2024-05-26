@@ -5,7 +5,6 @@
 #include <stdexcept>
 #include <string>
 
-#include "llm/anthropic/anthropic-api.h"
 #include "llm/anthropic/anthropic-client.h"
 #include "llm/anthropic/anthropic-model.h"
 #include "llm/anthropic/anthropic-req.h"
