@@ -20,13 +20,11 @@
 
 using string = std::string;
 
-class OpenAIClientBuilder;
+class OpenAiEmbedClientBuilder;
 using namespace cpr;
-class OpenAIClient {
- public:
-    friend class OpenAIClientBuilder;
+struct OpenAiEmbedClient {
+    friend struct OpenAiEmbedClientBuilder;
 
- public:
     TextEmbedding embed(const vector<string> &input) {
         OpenAIReq req{.input = std::move(input), .model = model};
 
@@ -34,7 +32,7 @@ class OpenAIClient {
         spdlog::info("messages req:{}", body);
 
         cpr::Response r = cpr::Post(
-            cpr::Url{base_url + "/embeddings"}, cpr::Body(body),
+            cpr::Url{url}, cpr::Body(body),
             cpr::Header{{"Content-Type", "application/json"}, {"Authorization", "Bearer " + api_key}});
 
         spdlog::info("api-key:{}", api_key);
@@ -58,21 +56,20 @@ class OpenAIClient {
     }
 
  private:
-    string base_url = "https://api.openai.com/v1/";
-    string model = "";
+    string url = "https://api.openai.com/v1/embeddings";
+    string model = "text-embedding-3-small";
     string api_key = std::getenv("OPENAI_API_KEY") ? std::getenv("OPENAI_API_KEY") : "";
     int timeout = 60;
 };
 
-class OpenAIClientBuilder {
- public:
-    BUILDER_WITH(OpenAIClientBuilder, string, client, base_url)
-    BUILDER_WITH(OpenAIClientBuilder, string, client, model)
-    BUILDER_WITH(OpenAIClientBuilder, string, client, api_key)
-    BUILDER_WITH(OpenAIClientBuilder, int, client, timeout)
-    std ::shared_ptr<OpenAIClient> build() { return client; }
+struct OpenAiEmbedClientBuilder {
+    BUILDER_WITH(OpenAiEmbedClientBuilder, string, client, url)
+    BUILDER_WITH(OpenAiEmbedClientBuilder, string, client, model)
+    BUILDER_WITH(OpenAiEmbedClientBuilder, string, client, api_key)
+    BUILDER_WITH(OpenAiEmbedClientBuilder, int, client, timeout)
+    std ::shared_ptr<OpenAiEmbedClient> build() { return client; }
 
  private:
-    std::shared_ptr<OpenAIClient> client = std::make_shared<OpenAIClient>();
+    std::shared_ptr<OpenAiEmbedClient> client = std::make_shared<OpenAiEmbedClient>();
 };
 #endif  // LANGCHAIN4CPP_MODULES_LLM_OPENAI_CLIENT_H_

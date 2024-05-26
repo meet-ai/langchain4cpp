@@ -6,14 +6,15 @@
 #include <string>
 
 #include "llm/openai/llm.h"
-#include "llm/openai/openai-client.h"
+#include "llm/openai/openai-chat-model.h"
+#include "llm/openai/openai-embed-client.h"
 #include "llm/openai/openai-embed-model.h"
 #include "llm/openai/openai-req.h"
 #include "llm/openai/openai-resp.h"
 
 using namespace std;
 TEST(OpenAIClient, embed) {
-    OpenAIClientBuilder builder;
+    OpenAiEmbedClientBuilder builder;
     auto api_key = std::getenv("OPENAI_API_KEY") ? std::getenv("OPENAI_API_KEY") : "";
     auto client_ptr = builder.with_api_key(api_key).with_model("text-embedding-3-small").build();
     auto response = client_ptr->embed(vector<string>{"hello,world", "你是说"});
@@ -24,6 +25,15 @@ TEST(OpenAILlmBuilder, build) {
     OpenAiLlmBuilder builder;
     auto openAiLlm = builder.with_model("hello").with_api_key("hello").with_base_url("hello").build();
     openAiLlm->chat(vector<string>({"hello"}));
+}
+TEST(OpenAiChatModelBuilder, build) {
+    OpenAiChatClientBuilder builder;
+    auto client_ptr = builder.build();
+
+    OpenAiChatModelBuilder mbuilder;
+    auto openAiChatModel = mbuilder.with_client_ptr(client_ptr).build();
+    auto reMess = openAiChatModel->chat(vector<string>({"hello"}));
+    spdlog::info("chat {}:{}", reMess.size(), reMess[0]);
 }
 // TEST(AnthropicClient, Create) {
 //     AnthropicClientBuilder builder;
