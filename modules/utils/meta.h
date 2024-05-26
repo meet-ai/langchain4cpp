@@ -7,10 +7,10 @@
     const type& get_##name() const { return name; } \
     void set_##name(const type& value) { name = value; }
 
-#define BUILDER_WITH(typebuilder, typefield, field_class_instance, field) \
-    typebuilder& with_##field(const typefield& value) {                   \
-        field_class_instance->field = value;                              \
-        return *this;                                                     \
+#define BUILDER_WITH(builder_class, field_type, to_build_instance_ptr, field) \
+    builder_class& with_##field(const field_type& value) {                    \
+        to_build_instance_ptr->field = value;                                 \
+        return *this;                                                         \
     }
 
 //    AnthropicClientBuilder& log_response(bool log_resp) {
