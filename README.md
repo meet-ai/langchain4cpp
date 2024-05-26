@@ -12,4 +12,18 @@ Cpp version of langchain.
   - [ ]  Agent support
   - [ ]  RAG（Retrieval-Augmented Generation）support
   
-# 
+# compile
+
+```
+#install xmake  
+curl -fsSL https://xmake.io/shget.text | bash
+
+# install conan
+pip install conan
+
+#compile openai unit 
+xmake build -v ut-openai
+
+#run as demo
+xmake run -v ut-openai -a  --gtest_filter=OpenAiChatModelBuilder.build
+```
