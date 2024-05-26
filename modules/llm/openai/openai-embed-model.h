@@ -21,11 +21,7 @@ using std::vector;
 class OpenAIEmbedModelBuilder;
 class OpenAIEmbedModel {
  public:
-    vector<TextEmbedding> embedTexts(const vector<string> texts) {
-        //        auto ums = vector<UserMessage>{message};
-        //        auto textContents = openai_client->Create(ums);
-        //        return textContents.size() > 0 ? std::move(textContents[0]) : TextContent{};
-    }
+    TextEmbedding embedText(string text) { return openai_client->embed(vector<string>{text}); }
     // vector<string> ListModels() { return vector<string>(); };
 
     // LlmMessage generate(const vector<UserMessage> &messages) { return std::move(LlmMessage{}); }
@@ -53,10 +49,10 @@ class OpenAIEmbedModelBuilder {
     BUILDER_WITH(OpenAIEmbedModelBuilder, int, openai_embed_model_ptr, max_tokens)
     BUILDER_WITH(OpenAIEmbedModelBuilder, bool, openai_embed_model_ptr, stop_seq_)
     BUILDER_WITH(OpenAIEmbedModelBuilder, int, openai_embed_model_ptr, max_retries)
-    BUILDER_WITH(OpenAIEmbedModelBuilder, shared_ptr<OpenAIClient>, openai_embed_model_ptr, openai_embed_client)
+    BUILDER_WITH(OpenAIEmbedModelBuilder, shared_ptr<OpenAIClient>, openai_embed_model_ptr, openai_client)
     std ::shared_ptr<OpenAIEmbedModel> build() { return openai_embed_model_ptr; }
 
  private:
     std::shared_ptr<OpenAIEmbedModel> openai_embed_model_ptr = std::make_shared<OpenAIEmbedModel>();
-}
+};
 #endif
