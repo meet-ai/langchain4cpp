@@ -21,9 +21,7 @@ struct OpenAiChatModel : OpenAiModel {
         std::transform(texts.begin(), texts.end(), messages.begin(), [](const string &text) {
             Message message;
             message.role = "user";
-            TextContent textContent{.type = "text", .text = text};
-            auto inVec = VarContent{textContent};
-            message.content = vector<VarStrContent>{inVec};
+            message.content = text;
             return message;
         });
 
@@ -34,6 +32,30 @@ struct OpenAiChatModel : OpenAiModel {
             return choice.message.content;
         });
         return reMessages;
+    }
+
+    string mmchat(const std::vector<string> &_images, const string &prompts) {
+        // TODO: build req/resp
+        vector<Message> messages(1);
+        vector<Image> images(_images.size());
+        std::transform(_images.begin(), _images.end(), images.begin(), [](const string &image) {
+            ImageContent imageContent{.type = "image_url", .image_url = {image}};
+            return Image{imageContent};
+        });
+        auto promptInMessage = TextContent{.type = "text", .text = prompts};
+        vector<Image> imagesInOneMessage;
+        images.push_back(promptInMessage);
+
+        messages[0].role = "user";
+        messages[0].content = images;
+
+        OpenAiChatReq req{.model = model, .messages = messages};
+        auto resp = client_ptr->chat(req);
+        vector<string> reMessages(resp.choices.size());
+        std::transform(resp.choices.begin(), resp.choices.end(), reMessages.begin(), [](const Choice &choice) {
+            return choice.message.content;
+        });
+        return reMessages.size() > 0 ? reMessages[0] : "";
     }
 
  private:

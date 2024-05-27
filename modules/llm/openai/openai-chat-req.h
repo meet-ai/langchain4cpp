@@ -50,19 +50,19 @@ struct TextContent {
     string type;
     string text;
 };
-struct Image {
+struct ImageUrl {
     string url;
 };
 struct ImageContent {
     string type;
-    Image image_url;
+    ImageUrl image_url;
 };
 
-using VarContent = std::variant<ImageContent, TextContent>;
-using VarStrContent = std::variant<string, std::variant<ImageContent, TextContent>>;
+using Image = std::variant<ImageContent, TextContent>;
+using TextOrImageVec = std::variant<string, vector<Image>>;
 struct Message {
     string role;
-    vector<VarStrContent> content;
+    TextOrImageVec content;
 };
 struct OpenAiChatReq {
     string model = "";

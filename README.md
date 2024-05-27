@@ -4,7 +4,7 @@ Cpp version of langchain.
 # future plan
   - [x]  Claude3 chat
   - [x]  openai embedding 
-  - [ ]  Openai chat
+  - [x]  Openai chat
   - [ ]  Llama3 support 
   - [ ]  Cache
   - [ ]  Vector index support
